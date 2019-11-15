@@ -3,12 +3,12 @@ const fs = require('fs');
 const path = require("path")
 var recursive = require("recursive-readdir");
 
-const testFolder = '/Volumes/ALLHDAMP3/ALLHDAMP3' // '/Users/oariel/Dev/mp3tag/tests';
+const testFolder =  '/Volumes/AllHDMP3S/ALLHDAMP3' //'/Users/oariel/Desktop'; 
 
 console.log('"Artist", "Original Album Name", "Clean Album Name"');   
 
 async function main() {
-    var i = 68;
+    var i = 90;
     for (var i =65; i < 91; i++) {
         var letter = String.fromCharCode(i);
         await doLetter(letter);
@@ -39,7 +39,7 @@ async function doLetter(letter) {
                         
                         var album = tags.album;
 
-                        if ( album /*&& album === "Israelites (1969 original US LP) 24-96"*/) {
+                        if ( album /*&& album === "Like Minds (1998) 24 88 [SACD] (2003 Remaster PCM Stereo)"*/) {
 
                             cleanAlbum = '';
 
@@ -106,12 +106,12 @@ async function doLetter(letter) {
                     }
 
                     if ( !testMode ) {
-                        console.log("Writing " + file);
+                        console.log("Writing " + file + " album: " + cleanAlbum);
                         tags.album = cleanAlbum;
                         tags.originalTitle = originalTitle;
-                        var success = NodeID3.update(tags, file);
-                        if ( !success )
-                            console.log("failed to write ID3 tags to " + file)
+                        var result = NodeID3.update(tags, file);
+                        if ( result.errno < 0 )
+                            console.log(result.message)
                     }
 
                     
