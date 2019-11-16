@@ -110,7 +110,7 @@ async function doLetter(letter) {
 
                     var ext = file.split('.').pop();
                     if ( ext === 'mp3' ) {
-                        var newName = `${tags.trackNumber.padStart(2,'0')} - ${tags.artist} - ${cleanAlbum} - ${tags.title}.${ext}`
+                        var newName = `./${tags.trackNumber.padStart(2,'0')} - ${tags.artist} - ${cleanAlbum} - ${tags.title}.${ext}`
                         if ( !testMode ) {         
 
                             // Update tags
